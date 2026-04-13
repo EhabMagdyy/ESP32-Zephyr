@@ -1,0 +1,26 @@
+/ {
+	aliases {
+		led2 = &led_0;
+		led4 = &led_1;
+		led5 = &led_2;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		led_0: gpio2 {
+			gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+			label = "GPIO2 LED";
+		};
+
+		led_1: gpio4 {
+			gpios = <&gpio 4 GPIO_ACTIVE_HIGH>;
+			label = "GPIO4 LED";
+		};
+
+		led_2: gpio5 {
+			gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
+			label = "GPIO5 LED";
+		};
+	};
+};
