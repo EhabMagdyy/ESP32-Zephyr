@@ -1,0 +1,53 @@
+// ====================================== Creating new nodes
+/ {
+	aliases {
+		led2 = &led0;
+		led4 = &led1;
+		led5 = &led2;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		led0: led_0 {
+			gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+			label = "A0 LED";
+		};
+
+		led1: led_1 {
+			gpios = <&gpio 4 GPIO_ACTIVE_HIGH>;
+			label = "A1 LED";
+		};
+
+		led2: led_2 {
+			gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
+			label = "A2 LED";
+		};
+	};
+};
+
+// ====================================== update existing nodes
+// pinctrl configuration for UART2
+&pinctrl {
+	uart2_default: uart2_default {
+		group1 {
+			pinmux = <UART2_TX_GPIO17>, <UART2_RX_GPIO16>;
+		};
+	};
+
+	uart2_sleep: uart2_sleep {
+		group1 {
+			pinmux = <UART2_TX_GPIO17>, <UART2_RX_GPIO16>;
+		};
+	};
+};
+
+// UART2 configuration
+&uart2 {
+	status = "okay";	// Enable UART2
+	current-speed = <115200>;	// Set baud rate to 115200
+
+	pinctrl-0 = <&uart2_default>;
+	pinctrl-1 = <&uart2_sleep>;
+	pinctrl-names = "default", "sleep";
+};
