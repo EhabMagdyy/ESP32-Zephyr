@@ -162,6 +162,7 @@ Time(s)   LED Thread       TX Thread             RX Thread
 ### Build
 ``` bash
 west build -p always -b esp32_devkitc/esp32/procpu . --extra-dtc-overlay board/esp32.overlay -DPython3_EXECUTABLE=/home/ehab/zephyrproject/.venv/bin/python3
+```
 
 ### Flash
 ``` bash
