@@ -195,18 +195,23 @@ Boot
 
 ## Build & Flash for ESP32
 
+### Source 
+```sh
+source /home/ehab/zephyrproject/zephyr/.venv/bin/activate
+```
+
 ### Build
-``` bash
+``` sh
 west build -p always -b esp32_devkitc/esp32/procpu . --extra-dtc-overlay board/esp32.overlay -DPython3_EXECUTABLE=/home/ehab/zephyrproject/.venv/bin/python3
 ```
 
 ### Flash
-``` bash
+``` sh
 west flash --esp-device /dev/ttyUSB0
 ```
 
 ### Monitor
-``` bash
+``` sh
 pip install esp-idf-monitor
 python -m esp_idf_monitor --port /dev/ttyUSB0 --baud 115200 build/zephyr/zephyr.elf
 # to terminate
@@ -217,21 +222,48 @@ python -m esp_idf_monitor --port /dev/ttyUSB0 --baud 115200 build/zephyr/zephyr.
 ```sh
 WiFi Example
 Board: esp32_devkitc
-Connecting to SSID: WE2.4
-IPv4 address: 192.168.1.2
-Subnet: 255.255.255.0
-Router: 192.168.1.1
+Connecting to SSID: ITI_Students
+IPv4 address: 10.145.1.12
+Subnet: 255.255.0.0
+Router: 10.145.0.1
 Connected
 
-SSID: WE2.4                           
+SSID: ITI_Students                    
 Band: 2.4GHz
-Channel: 9
+Channel: 1
 Security: WPA2-PSK
-RSSI: -70
+RSSI: -78
 Ready...
 
-Sending Ping #1 to 8.8.8.8...
+Looking up google...
+IPv4: 172.217.169.238
+IPv6: 2a00:1450:4002:409::200e
+Sending Ping #1 to 172.217.169.238...
 Ping reply received!
-Sending Ping #2 to 8.8.8.8...
+Sending Ping #2 to 172.217.169.238...
 Ping reply received!
+Sending Ping #3 to 172.217.169.238...
+Ping reply received!
+Sending Ping #4 to 172.217.169.238...
+Ping reply received!
+Connecting to 2a00:1450:4002:409::200e:80 Failure (-1)
+Connecting to 172.217.169.238:80 Success
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.com/
+Content-Type: text/html; charset=UTF-8
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce--vZ7MxmCyRdveY4-vI0fQw' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Date: Wed, 15 Apr 2026 11:42:22 GMT
+Expires: Fri, 15 May 2026 11:42:22 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 219
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
 ```

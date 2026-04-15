@@ -7,8 +7,8 @@
 #include "http_get.h"
 #include "ping.h"
 
-#define SSID "WE2.4"
-#define PSK "TheWe13x"
+#define SSID "ITI_Students"
+#define PSK "ITI_2@24"
 
 // binary semaphore to signal when WiFi is connected
 static K_SEM_DEFINE(wifi_connected, 0, 1);
@@ -133,8 +133,7 @@ void wifi_disconnect(void){
 int main(void){
     printk("WiFi Example\nBoard: %s\n", CONFIG_BOARD);
 
-    net_mgmt_init_event_callback(&wifi_cb, wifi_mgmt_event_handler,
-                                 NET_EVENT_WIFI_CONNECT_RESULT | NET_EVENT_WIFI_DISCONNECT_RESULT);
+    net_mgmt_init_event_callback(&wifi_cb, wifi_mgmt_event_handler, NET_EVENT_WIFI_CONNECT_RESULT | NET_EVENT_WIFI_DISCONNECT_RESULT);
 
     net_mgmt_init_event_callback(&ipv4_cb, wifi_mgmt_event_handler, NET_EVENT_IPV4_ADDR_ADD);
 
@@ -148,8 +147,8 @@ int main(void){
     printk("Ready...\n\n");
 
     struct zsock_addrinfo *res;
-    printk("Looking up supabase...\n");
-    if(nslookup("lxsiuzhlxdfctibhdkwm.supabase.co", &res) == 1){
+    printk("Looking up google...\n");
+    if(nslookup("google.com", &res) == 1){
         // 1. Get the IP string from the DNS result to use for Ping
         char myIPv4[INET_ADDRSTRLEN];
         addrinfo_results(&res, myIPv4);
@@ -160,7 +159,7 @@ int main(void){
         // 3. Connect and HTTP GET
         int sock = connect_socket(&res, 80);
         if(sock >= 0){
-            http_get(sock, "lxsiuzhlxdfctibhdkwm.supabase.co", "/");
+            http_get(sock, "google.com", "/");
             zsock_close(sock);
         }
         // Free the DNS results memory
@@ -168,7 +167,7 @@ int main(void){
     }
 
     while(1){
-        k_sleep(K_SECONDS(1));
+        k_sleep(K_FOREVER);
     }
 
     return(0);
