@@ -17,10 +17,11 @@ west flash --esp-device /dev/ttyUSB0
 
 ## Monitor
 ``` bash
-sudo apt install screen
-screen /dev/ttyUSB0 115200
+### Monitor
+``` sh
+pip install esp-idf-monitor
+python -m esp_idf_monitor --port /dev/ttyUSB0 --baud 115200 build/zephyr/zephyr.elf
 # to terminate
-# ctrl + A + X
-# from another terminal run if it
-sudo pkill -9 -f "screen dev/ttyUSB0 115200"
+# ctrl + ]
+```
 ```
