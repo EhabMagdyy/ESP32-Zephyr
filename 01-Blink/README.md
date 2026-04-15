@@ -16,12 +16,10 @@ west flash --esp-device /dev/ttyUSB0
 ```
 
 ## Monitor
-``` bash
-### Monitor
 ``` sh
 pip install esp-idf-monitor
 python -m esp_idf_monitor --port /dev/ttyUSB0 --baud 115200 build/zephyr/zephyr.elf
 # to terminate
 # ctrl + ]
 ```
-```
+
