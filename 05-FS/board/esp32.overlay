@@ -1,0 +1,16 @@
+/ {
+    fstab {
+        compatible = "zephyr,fstab";
+        littlefs: littlefs {
+            compatible         = "zephyr,fstab,littlefs";
+            mount-point        = "/update";
+            partition          = <&storage_partition>;
+            automount;
+            read-size          = <16>;
+            prog-size          = <16>;
+            cache-size         = <64>;
+            lookahead-size     = <32>;
+            block-cycles       = <512>;
+        };
+    };
+};
